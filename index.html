@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>用小红书 App 打开</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;text-align:center;padding:60px 20px;color:#333;background:#fafafa}
+a.btn{display:inline-block;margin:14px 0;padding:14px 28px;border-radius:28px;background:#ff2442;color:#fff;text-decoration:none;font-size:17px}
+a.web{color:#888;font-size:14px}
+</style>
+</head>
+<body>
+<p id="msg">正在打开小红书 App…</p>
+<a class="btn" id="app" href="#">用小红书 App 打开</a><br>
+<a class="web" id="web" href="#">打不开？在网页里看</a>
+<script>
+var id=(new URLSearchParams(location.search).get('id')||'').trim();
+if(!/^[0-9a-f]{24}$/i.test(id)){document.getElementById('msg').textContent='链接里没有有效的帖子编号';document.getElementById('app').style.display='none';document.getElementById('web').style.display='none';}
+else{
+var app='xhsdiscover://item/'+id, web='https://www.xiaohongshu.com/explore/'+id;
+document.getElementById('app').href=app;document.getElementById('web').href=web;
+location.href=app;
+}
+</script>
+</body>
+</html>
